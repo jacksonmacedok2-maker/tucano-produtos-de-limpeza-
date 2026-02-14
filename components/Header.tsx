@@ -22,7 +22,8 @@ const Header: React.FC<HeaderProps> = ({ scrolled }) => {
     e.preventDefault();
     const element = document.getElementById(id);
     if (element) {
-      const offset = 100; // Aumentado devido ao header maior
+      // Ajustado offset para a nova altura do header
+      const offset = scrolled ? 100 : 160; 
       const bodyRect = document.body.getBoundingClientRect().top;
       const elementRect = element.getBoundingClientRect().top;
       const elementPosition = elementRect - bodyRect;
@@ -37,13 +38,13 @@ const Header: React.FC<HeaderProps> = ({ scrolled }) => {
   };
 
   return (
-    <header className={`fixed w-full z-50 transition-all duration-500 flex items-center ${scrolled ? 'bg-white shadow-md py-3 sm:py-3' : 'bg-transparent py-6 sm:py-8'}`}>
-      <div className="container mx-auto px-5 sm:px-6 flex justify-between items-center">
-        {/* Logo com presença de marca expandida */}
+    <header className={`fixed w-full z-50 transition-all duration-500 flex items-center ${scrolled ? 'bg-white shadow-md py-4 sm:py-5' : 'bg-transparent py-10 sm:py-12'}`}>
+      <div className="container mx-auto px-6 sm:px-10 flex justify-between items-center">
+        {/* Container da Logo - Sem restrições de overflow para permitir expansão */}
         <a 
           href="#inicio" 
           onClick={(e) => handleNavClick(e, 'inicio')}
-          className="flex items-center group"
+          className="flex items-center group relative z-10"
           aria-label="Tucano - Ir para o início"
         >
           <div className="flex items-center justify-center">
@@ -51,9 +52,15 @@ const Header: React.FC<HeaderProps> = ({ scrolled }) => {
               id="header-logo-icon"
               src={LOGO_URL} 
               alt="TUCANO Logo" 
-              className={`w-auto object-contain transition-all duration-300 group-hover:scale-105 
-                ${scrolled ? 'h-12 sm:h-14 md:h-16 lg:h-20' : 'h-14 sm:h-16 md:h-20 lg:h-24'}`} 
-              style={{ maxHeight: scrolled ? '80px' : '96px' }}
+              className={`w-auto object-contain transition-all duration-500 group-hover:scale-105 
+                ${scrolled 
+                  ? 'h-20 sm:h-24 md:h-28 lg:h-28' // Mobile: 80px | Desktop: 112px (scrolled)
+                  : 'h-24 sm:h-28 md:h-32 lg:h-36' // Mobile: 96px | Desktop: 144px (default)
+                }`} 
+              style={{ 
+                maxHeight: scrolled ? '120px' : '180px',
+                filter: scrolled ? 'none' : 'drop-shadow(0 6px 12px rgba(0,0,0,0.15))'
+              }}
               onError={(e) => {
                 (e.target as HTMLImageElement).src = "https://img.icons8.com/color/144/toucan.png";
               }}
@@ -61,25 +68,25 @@ const Header: React.FC<HeaderProps> = ({ scrolled }) => {
           </div>
         </a>
 
-        {/* Desktop Nav - Alinhamento centralizado com a logo */}
-        <nav className="hidden md:flex items-center space-x-2 lg:space-x-4">
+        {/* Desktop Nav */}
+        <nav className="hidden md:flex items-center space-x-2 lg:space-x-8">
           {navItems.map((item) => (
             <a 
               key={item.id} 
               href={`#${item.id}`}
               onClick={(e) => handleNavClick(e, item.id)}
-              className={`header-nav-link font-extrabold text-sm lg:text-base transition-all ${scrolled ? 'text-slate-800' : 'text-white'}`}
+              className={`header-nav-link font-black text-sm lg:text-lg transition-all ${scrolled ? 'text-slate-800' : 'text-white'}`}
             >
               {item.label}
             </a>
           ))}
           
-          <div className="flex items-center space-x-4 ml-4 border-l border-white/20 pl-4">
+          <div className={`flex items-center space-x-4 ml-4 border-l pl-6 ${scrolled ? 'border-slate-200' : 'border-white/20'}`}>
             <a 
               href={CONTACT_INFO.instagram} 
               target="_blank" 
               rel="noopener noreferrer"
-              className="w-10 h-10 flex items-center justify-center transition-transform duration-300 hover:scale-110 overflow-hidden"
+              className="w-12 h-12 flex items-center justify-center transition-transform duration-300 hover:scale-110 overflow-hidden"
               aria-label="Instagram"
             >
               <img src={INSTA_ICON_URL} alt="Instagram" className="w-full h-full object-contain scale-[1.3]" />
@@ -87,33 +94,33 @@ const Header: React.FC<HeaderProps> = ({ scrolled }) => {
           </div>
         </nav>
 
-        {/* Mobile Menu Toggle */}
-        <div className="md:hidden flex items-center">
+        {/* Mobile Menu Toggle - Tamanho proporcional à nova logo */}
+        <div className="md:hidden flex items-center relative z-10">
            <button onClick={() => setIsOpen(!isOpen)} className={scrolled ? 'text-tucano-blue' : 'text-white'} aria-label="Abrir menu">
-            {isOpen ? <X size={36} /> : <Menu size={36} />}
+            {isOpen ? <X size={48} /> : <Menu size={48} />}
           </button>
         </div>
       </div>
 
       {/* Mobile Nav */}
       {isOpen && (
-        <div className="absolute top-full left-0 w-full bg-white shadow-2xl md:hidden flex flex-col p-8 space-y-4 animate-in fade-in slide-in-from-top-4 duration-300">
+        <div className="absolute top-full left-0 w-full bg-white shadow-2xl md:hidden flex flex-col p-10 space-y-4 animate-in fade-in slide-in-from-top-4 duration-300">
           {navItems.map((item) => (
             <a 
               key={item.id} 
               href={`#${item.id}`}
               onClick={(e) => handleNavClick(e, item.id)}
-              className="header-nav-link w-full text-xl font-black text-slate-800 py-4 border-b border-slate-50"
+              className="header-nav-link w-full text-2xl font-black text-slate-800 py-6 border-b border-slate-50"
             >
               {item.label}
             </a>
           ))}
-          <div className="flex justify-center gap-8 mt-6">
+          <div className="flex justify-center gap-8 mt-10">
              <a 
               href={CONTACT_INFO.instagram} 
               target="_blank" 
               rel="noopener noreferrer"
-              className="w-12 h-12 flex items-center justify-center overflow-hidden"
+              className="w-20 h-20 flex items-center justify-center overflow-hidden bg-slate-50 rounded-3xl"
             >
               <img src={INSTA_ICON_URL} alt="Instagram" className="w-full h-full object-contain scale-[1.3]" />
             </a>

@@ -56,11 +56,12 @@ const IntroAnimation: React.FC = () => {
     const moveX = targetX - startX - (toucan.offsetWidth / 2);
     const moveY = targetY - startY - (toucan.offsetHeight / 2);
     
-    // Alinhando com os novos tamanhos:
-    // LG (96px): 96/128 = 0.75
-    // MD (80px): 80/128 = 0.625
-    // Mobile (64px): 64/128 = 0.5
-    const finalScale = window.innerWidth >= 1024 ? 0.75 : (window.innerWidth >= 768 ? 0.625 : 0.5);
+    // Alinhando com os novos tamanhos ampliados:
+    // Base da animação é 128px (w-32)
+    // LG (144px): 144/128 = 1.125
+    // MD (128px): 128/128 = 1.0
+    // Mobile (96px): 96/128 = 0.75
+    const finalScale = window.innerWidth >= 1024 ? 1.125 : (window.innerWidth >= 768 ? 1.0 : 0.75);
 
     toucan.style.transition = 'transform 2s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease';
     toucan.style.transform = `translate3d(${moveX}px, ${moveY}px, 0) scale(${finalScale + 0.15}) rotate(-10deg)`;

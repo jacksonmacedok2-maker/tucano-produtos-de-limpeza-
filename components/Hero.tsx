@@ -103,7 +103,7 @@ const Hero: React.FC = () => {
   const handleScrollToProducts = () => {
     const element = document.getElementById('produtos');
     if (element) {
-      const offset = 80;
+      const offset = 120;
       const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
       window.scrollTo({
         top: elementPosition - offset,
@@ -113,7 +113,7 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <section id="inicio" className="relative min-h-[100vh] flex items-center pt-20 overflow-hidden bg-slate-900">
+    <section id="inicio" className="relative min-h-[100vh] flex items-center pt-32 sm:pt-40 lg:pt-48 overflow-hidden bg-slate-900">
       {/* Background Image Container */}
       <div className="absolute inset-0 z-0">
         <img 
