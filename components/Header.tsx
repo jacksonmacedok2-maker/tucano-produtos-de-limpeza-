@@ -22,7 +22,7 @@ const Header: React.FC<HeaderProps> = ({ scrolled }) => {
     e.preventDefault();
     const element = document.getElementById(id);
     if (element) {
-      const offset = 80;
+      const offset = 100; // Aumentado devido ao header maior
       const bodyRect = document.body.getBoundingClientRect().top;
       const elementRect = element.getBoundingClientRect().top;
       const elementPosition = elementRect - bodyRect;
@@ -42,13 +42,13 @@ const Header: React.FC<HeaderProps> = ({ scrolled }) => {
   };
 
   return (
-    <header className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-4'}`}>
-      <div className="container mx-auto px-6 flex justify-between items-center">
-        {/* Logo minimalista (apenas o símbolo) */}
+    <header className={`fixed w-full z-50 transition-all duration-500 flex items-center ${scrolled ? 'bg-white shadow-md py-3 sm:py-3' : 'bg-transparent py-6 sm:py-8'}`}>
+      <div className="container mx-auto px-5 sm:px-6 flex justify-between items-center">
+        {/* Logo com presença de marca expandida */}
         <a 
           href="#inicio" 
           onClick={(e) => handleNavClick(e, 'inicio')}
-          className="flex items-center group py-1"
+          className="flex items-center group"
           aria-label="Tucano - Ir para o início"
         >
           <div className="flex items-center justify-center">
@@ -56,29 +56,30 @@ const Header: React.FC<HeaderProps> = ({ scrolled }) => {
               id="header-logo-icon"
               src={LOGO_URL} 
               alt="TUCANO Logo" 
-              className="h-10 md:h-14 w-auto object-contain transition-all duration-300 group-hover:scale-110" 
+              className={`w-auto object-contain transition-all duration-300 group-hover:scale-105 
+                ${scrolled ? 'h-12 sm:h-14 md:h-16 lg:h-20' : 'h-14 sm:h-16 md:h-20 lg:h-24'}`} 
+              style={{ maxHeight: scrolled ? '80px' : '96px' }}
               onError={(e) => {
-                // Fallback discreto caso o link do Drive falhe
-                (e.target as HTMLImageElement).src = "https://img.icons8.com/color/96/toucan.png";
+                (e.target as HTMLImageElement).src = "https://img.icons8.com/color/144/toucan.png";
               }}
             />
           </div>
         </a>
 
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center space-x-2 lg:space-x-4">
+        {/* Desktop Nav - Alinhamento centralizado com a logo */}
+        <nav className="hidden md:flex items-center space-x-2 lg:space-x-6">
           {navItems.map((item) => (
             <a 
               key={item.id} 
               href={`#${item.id}`}
               onClick={(e) => handleNavClick(e, item.id)}
-              className={`header-nav-link font-semibold transition-all ${scrolled ? 'text-slate-700' : 'text-white'}`}
+              className={`header-nav-link font-extrabold text-sm lg:text-base transition-all ${scrolled ? 'text-slate-800' : 'text-white'}`}
             >
               {item.label}
             </a>
           ))}
           
-          <div className="flex items-center space-x-4 ml-4">
+          <div className="flex items-center space-x-4 ml-6 border-l border-white/20 pl-6">
             <a 
               href={CONTACT_INFO.instagram} 
               target="_blank" 
@@ -89,42 +90,42 @@ const Header: React.FC<HeaderProps> = ({ scrolled }) => {
             </a>
             <button 
               onClick={handleWhatsAppClick}
-              className="bg-tucano-yellow text-tucano-blue flex items-center gap-2 px-6 py-2 rounded-full font-bold shadow-lg hover:scale-105 transition-transform"
+              className="bg-tucano-yellow text-tucano-blue flex items-center gap-2 px-8 py-4 rounded-full font-black shadow-[0_8px_20px_rgba(255,215,0,0.3)] hover:scale-105 hover:shadow-xl transition-all"
             >
-              <MessageCircle size={20} />
-              <span>WhatsApp</span>
+              <MessageCircle size={22} />
+              <span className="hidden lg:inline">WhatsApp</span>
             </button>
           </div>
         </nav>
 
         {/* Mobile Menu Toggle */}
-        <div className="md:hidden flex items-center space-x-4">
-           <button onClick={() => setIsOpen(!isOpen)} className={scrolled ? 'text-tucano-blue' : 'text-white'}>
-            {isOpen ? <X size={32} /> : <Menu size={32} />}
+        <div className="md:hidden flex items-center">
+           <button onClick={() => setIsOpen(!isOpen)} className={scrolled ? 'text-tucano-blue' : 'text-white'} aria-label="Abrir menu">
+            {isOpen ? <X size={36} /> : <Menu size={36} />}
           </button>
         </div>
       </div>
 
       {/* Mobile Nav */}
       {isOpen && (
-        <div className="absolute top-full left-0 w-full bg-white shadow-xl md:hidden flex flex-col p-6 space-y-2 animate-in fade-in slide-in-from-top-4 duration-300">
+        <div className="absolute top-full left-0 w-full bg-white shadow-2xl md:hidden flex flex-col p-8 space-y-4 animate-in fade-in slide-in-from-top-4 duration-300">
           {navItems.map((item) => (
             <a 
               key={item.id} 
               href={`#${item.id}`}
               onClick={(e) => handleNavClick(e, item.id)}
-              className="header-nav-link w-full text-lg font-semibold text-slate-700"
+              className="header-nav-link w-full text-xl font-black text-slate-800 py-4 border-b border-slate-50"
             >
               {item.label}
             </a>
           ))}
-          <div className="flex flex-col gap-4 mt-4">
+          <div className="flex flex-col gap-4 mt-8">
             <button 
               onClick={handleWhatsAppClick}
-              className="bg-tucano-blue text-white flex items-center justify-center gap-2 w-full py-3 rounded-lg font-bold"
+              className="bg-tucano-blue text-white flex items-center justify-center gap-3 w-full py-5 rounded-2xl font-black text-xl shadow-lg"
             >
-              <MessageCircle size={20} />
-              <span>Falar no WhatsApp</span>
+              <MessageCircle size={28} />
+              <span>WhatsApp Comercial</span>
             </button>
           </div>
         </div>

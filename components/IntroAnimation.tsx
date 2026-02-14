@@ -40,8 +40,8 @@ const IntroAnimation: React.FC = () => {
     const targetY = targetRect.top + targetRect.height / 2;
 
     // Posição inicial (fora da tela inferior esquerdo)
-    const startX = -100;
-    const startY = window.innerHeight + 100;
+    const startX = -200;
+    const startY = window.innerHeight + 200;
 
     // Definir posição inicial sem transição
     toucan.style.transition = 'none';
@@ -53,25 +53,30 @@ const IntroAnimation: React.FC = () => {
     toucan.offsetHeight;
 
     // Iniciar o voo com transição premium
-    // Usamos transform para mover para o alvo relativo à posição absoluta de startX/startY
     const moveX = targetX - startX - (toucan.offsetWidth / 2);
     const moveY = targetY - startY - (toucan.offsetHeight / 2);
+    
+    // Alinhando com os novos tamanhos:
+    // LG (96px): 96/128 = 0.75
+    // MD (80px): 80/128 = 0.625
+    // Mobile (64px): 64/128 = 0.5
+    const finalScale = window.innerWidth >= 1024 ? 0.75 : (window.innerWidth >= 768 ? 0.625 : 0.5);
 
-    toucan.style.transition = 'transform 1.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease';
-    toucan.style.transform = `translate3d(${moveX}px, ${moveY}px, 0) scale(0.35) rotate(-15deg)`;
+    toucan.style.transition = 'transform 2s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease';
+    toucan.style.transform = `translate3d(${moveX}px, ${moveY}px, 0) scale(${finalScale + 0.15}) rotate(-10deg)`;
 
     // Ao finalizar o voo
     setTimeout(() => {
       // Pequeno bounce final e encaixe
-      toucan.style.transform = `translate3d(${moveX}px, ${moveY}px, 0) scale(0.3) rotate(0deg)`;
+      toucan.style.transform = `translate3d(${moveX}px, ${moveY}px, 0) scale(${finalScale}) rotate(0deg)`;
       
       // Feedback visual na logo do header
       targetLogo.classList.add('logo-flash');
       
       setTimeout(() => {
         finishAnimation();
-      }, 300);
-    }, 1600);
+      }, 400);
+    }, 2000);
   };
 
   const finishAnimation = () => {
@@ -109,14 +114,14 @@ const IntroAnimation: React.FC = () => {
         }
         @keyframes wingFlap {
           0%, 100% { transform: scaleY(1); }
-          50% { transform: scaleY(0.9) rotate(5deg); }
+          50% { transform: scaleY(0.8) rotate(3deg); }
         }
         .logo-flash {
-          animation: flash 0.6s ease-out;
+          animation: flash 1s cubic-bezier(0.23, 1, 0.32, 1);
         }
         @keyframes flash {
           0% { filter: brightness(1); transform: scale(1); }
-          50% { filter: brightness(2) drop-shadow(0 0 10px #FFD700); transform: scale(1.2); }
+          50% { filter: brightness(2.5) drop-shadow(0 0 30px #FFD700); transform: scale(1.15); }
           100% { filter: brightness(1); transform: scale(1); }
         }
         body.intro-animating {
