@@ -1,8 +1,13 @@
 
 import React from 'react';
-import { MessageCircle } from 'lucide-react';
+import { CONTACT_INFO, WA_ICON_URL } from '../constants';
 
 const FinalCTA: React.FC = () => {
+  const handleClick = () => {
+    const url = `https://wa.me/${CONTACT_INFO.whatsapp}?text=${encodeURIComponent(CONTACT_INFO.waMessage)}`;
+    window.open(url, '_blank');
+  };
+
   return (
     <section className="py-24 bg-white">
       <div className="container mx-auto px-6">
@@ -19,8 +24,11 @@ const FinalCTA: React.FC = () => {
             <p className="text-xl text-blue-100 mb-12">
               Não perca mais tempo com produtos que não entregam o que prometem. Escolha a eficiência, o perfume e a economia.
             </p>
-            <button className="flex items-center justify-center space-x-3 bg-green-500 hover:bg-green-600 text-white px-10 py-5 rounded-2xl font-bold text-xl shadow-xl transition-all hover:scale-105 active:scale-95 mx-auto">
-              <MessageCircle size={32} />
+            <button 
+              onClick={handleClick}
+              className="flex items-center justify-center space-x-4 bg-[#25D366] hover:bg-[#1ebe5d] text-white px-10 py-5 rounded-2xl font-bold text-xl shadow-xl transition-all hover:scale-105 active:scale-95 mx-auto overflow-hidden"
+            >
+              <img src={WA_ICON_URL} alt="" className="w-14 h-14 object-contain scale-[1.3] transition-transform" />
               <span>Fale conosco no WhatsApp</span>
             </button>
           </div>

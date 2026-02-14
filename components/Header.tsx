@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
-import { Menu, X, Instagram } from 'lucide-react';
-import { CONTACT_INFO, LOGO_URL } from '../constants';
+import { Menu, X } from 'lucide-react';
+import { CONTACT_INFO, LOGO_URL, INSTA_ICON_URL } from '../constants';
 
 interface HeaderProps {
   scrolled: boolean;
@@ -62,7 +62,7 @@ const Header: React.FC<HeaderProps> = ({ scrolled }) => {
         </a>
 
         {/* Desktop Nav - Alinhamento centralizado com a logo */}
-        <nav className="hidden md:flex items-center space-x-2 lg:space-x-6">
+        <nav className="hidden md:flex items-center space-x-2 lg:space-x-4">
           {navItems.map((item) => (
             <a 
               key={item.id} 
@@ -74,14 +74,15 @@ const Header: React.FC<HeaderProps> = ({ scrolled }) => {
             </a>
           ))}
           
-          <div className="flex items-center space-x-4 ml-6 border-l border-white/20 pl-6">
+          <div className="flex items-center space-x-4 ml-4 border-l border-white/20 pl-4">
             <a 
               href={CONTACT_INFO.instagram} 
               target="_blank" 
               rel="noopener noreferrer"
-              className={`transition-colors duration-300 ${scrolled ? 'text-slate-700 hover:text-pink-600' : 'text-white hover:text-tucano-yellow'}`}
+              className="w-10 h-10 flex items-center justify-center transition-transform duration-300 hover:scale-110 overflow-hidden"
+              aria-label="Instagram"
             >
-              <Instagram size={28} />
+              <img src={INSTA_ICON_URL} alt="Instagram" className="w-full h-full object-contain scale-[1.3]" />
             </a>
           </div>
         </nav>
@@ -107,14 +108,14 @@ const Header: React.FC<HeaderProps> = ({ scrolled }) => {
               {item.label}
             </a>
           ))}
-          <div className="flex justify-center gap-6 mt-6">
+          <div className="flex justify-center gap-8 mt-6">
              <a 
               href={CONTACT_INFO.instagram} 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-slate-700 hover:text-pink-600 transition-colors"
+              className="w-12 h-12 flex items-center justify-center overflow-hidden"
             >
-              <Instagram size={32} />
+              <img src={INSTA_ICON_URL} alt="Instagram" className="w-full h-full object-contain scale-[1.3]" />
             </a>
           </div>
         </div>

@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
-import { MessageCircle, X } from 'lucide-react';
-import { CONTACT_INFO } from '../constants';
+import { X } from 'lucide-react';
+import { CONTACT_INFO, WA_ICON_URL } from '../constants';
 
 const WhatsAppFloatingButton: React.FC = () => {
   const [showTooltip, setShowTooltip] = useState(false);
@@ -45,8 +45,8 @@ const WhatsAppFloatingButton: React.FC = () => {
           <div className="absolute bottom-[-8px] right-6 w-4 h-4 bg-white rotate-45 border-r border-b border-slate-100"></div>
           
           <div className="flex items-start gap-3">
-            <div className="bg-green-100 text-green-600 p-2 rounded-full shrink-0">
-              <MessageCircle size={18} />
+            <div className="bg-green-50 p-1.5 rounded-full shrink-0 flex items-center justify-center overflow-hidden">
+              <img src={WA_ICON_URL} alt="" className="w-8 h-8 object-contain scale-[1.3]" />
             </div>
             <div>
               <p className="text-sm font-bold leading-tight mb-1">Dúvidas?</p>
@@ -69,12 +69,12 @@ const WhatsAppFloatingButton: React.FC = () => {
         onClick={handleClick}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        className="w-16 h-16 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-[0_10px_25px_rgba(37,211,102,0.4)] hover:scale-110 active:scale-95 transition-all duration-300 relative group overflow-hidden"
+        className="w-16 h-16 bg-[#25D366] rounded-full flex items-center justify-center shadow-[0_10px_25px_rgba(37,211,102,0.4)] hover:scale-110 active:scale-95 transition-all duration-300 relative group overflow-hidden p-0"
         aria-label="Falar no WhatsApp"
       >
         {/* Efeito de brilho no hover */}
         <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity"></div>
-        <MessageCircle size={32} fill="currentColor" />
+        <img src={WA_ICON_URL} alt="WhatsApp" className="w-14 h-14 object-contain scale-[1.4] group-hover:rotate-12 transition-transform duration-300" />
       </button>
     </div>
   );

@@ -15,6 +15,8 @@ import {
 
 // Formato lh3.googleusercontent.com/d/ID é mais estável para incorporação direta
 export const LOGO_URL = "https://lh3.googleusercontent.com/d/1K7Ub3ZOe3_8YPuQXCLRU5PFbEvckASZO";
+export const WA_ICON_URL = "https://lh3.googleusercontent.com/d/1ZbR2A36mB5bMceX6V3wNrN2vzQhhPTot";
+export const INSTA_ICON_URL = "https://lh3.googleusercontent.com/d/137PFkOlpVR1I4MfpqTN5aS7bPx9Px6rx";
 
 export const CONTACT_INFO = {
   whatsapp: "557588078221",
@@ -128,7 +130,7 @@ export const DIFFERENTIALS = [
   },
   { 
     title: "Perfume Ativo", 
-    desc: "Cápsulas de perfume que se ativam com o movimento, prolongando o frescor.",
+    desc: "Cápsulas de perfume que se ativam com o movemento, prolongando o frescor.",
     icon: <Wind className="text-tucano-blue w-10 h-10" />
   },
   { 

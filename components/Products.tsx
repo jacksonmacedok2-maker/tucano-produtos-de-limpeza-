@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { PRODUCTS, CONTACT_INFO } from '../constants';
+import { PRODUCTS, CONTACT_INFO, WA_ICON_URL } from '../constants';
 import { MessageCircle, Star, Droplets, Package } from 'lucide-react';
 
 const categories = ["Todos", "Sabão em pó", "Detergentes", "Amaciantes", "Limpadores", "Sabão Líquido"];
@@ -38,10 +38,10 @@ const Products: React.FC = () => {
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-6 py-2.5 rounded-full font-bold text-sm transition-all duration-300 border-2 ${
+                className={`category-pill px-6 py-2.5 rounded-full font-bold text-sm transition-all duration-300 border-2 ${
                   activeCategory === cat 
-                  ? 'bg-tucano-blue text-white border-tucano-blue shadow-lg shadow-blue-200 scale-105' 
-                  : 'bg-white text-slate-500 border-slate-100 hover:border-tucano-blue/30 hover:text-tucano-blue'
+                  ? 'bg-tucano-blue text-white border-tucano-blue shadow-lg shadow-blue-100' 
+                  : 'bg-white text-slate-600 border-slate-200'
                 }`}
               >
                 {cat}
@@ -69,7 +69,7 @@ const Products: React.FC = () => {
                   <div className="flex flex-col items-center justify-center text-slate-300">
                     <div className="relative">
                       <Package size={80} strokeWidth={1} />
-                      <Droplets className="absolute -bottom-2 -right-2 text-blue-200" size={32} />
+                      <span className="absolute -bottom-2 -right-2 text-blue-200"><Droplets size={32} /></span>
                     </div>
                     <span className="text-xs font-bold uppercase tracking-widest mt-4 opacity-50">Imagem em breve</span>
                   </div>
@@ -78,7 +78,7 @@ const Products: React.FC = () => {
                 {/* Best Seller Badge */}
                 {product.isBestSeller && (
                   <div className="absolute top-6 left-6 bg-tucano-yellow text-tucano-blue px-3 py-1.5 rounded-xl text-[10px] font-black flex items-center gap-1.5 shadow-xl animate-pulse">
-                    <Star size={12} fill="currentColor" />
+                    < Star size={12} fill="currentColor" />
                     PREMIUM
                   </div>
                 )}
@@ -120,9 +120,8 @@ const Products: React.FC = () => {
                 <div className="mt-auto pt-6 border-t border-slate-50 flex items-center justify-between gap-4">
                   <button 
                     onClick={() => handleBuyClick(product.name)}
-                    className="flex-grow flex items-center justify-center gap-2 bg-[#25D366] text-white py-4 rounded-2xl font-black text-sm shadow-[0_8px_20px_rgba(37,211,102,0.2)] hover:bg-[#1ebe5d] hover:shadow-[0_8px_25px_rgba(37,211,102,0.3)] transition-all active:scale-95"
+                    className="flex-grow flex items-center justify-center bg-[#25D366] text-white py-4 rounded-2xl font-black text-sm shadow-[0_8px_20px_rgba(37,211,102,0.2)] hover:bg-[#1ebe5d] hover:shadow-[0_8px_25px_rgba(37,211,102,0.3)] transition-all active:scale-95 overflow-hidden"
                   >
-                    <MessageCircle size={18} fill="currentColor" />
                     <span>Comprar agora</span>
                   </button>
                 </div>
