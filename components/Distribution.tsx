@@ -4,7 +4,7 @@ import { Store, Truck, Phone } from 'lucide-react';
 
 const Distribution: React.FC = () => {
   return (
-    <section className="py-24 bg-tucano-blue text-white overflow-hidden relative">
+    <section id="distribuidores" className="py-24 bg-tucano-blue text-white overflow-hidden relative">
       {/* Decorative SVG Pattern */}
       <div className="absolute inset-0 opacity-5 pointer-events-none">
         <svg width="100%" height="100%">
