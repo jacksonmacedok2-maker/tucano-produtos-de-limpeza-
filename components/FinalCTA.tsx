@@ -28,7 +28,7 @@ const FinalCTA: React.FC = () => {
               onClick={handleClick}
               className="flex items-center justify-center space-x-4 bg-[#25D366] hover:bg-[#1ebe5d] text-white px-10 py-5 rounded-2xl font-bold text-xl shadow-xl transition-all hover:scale-105 active:scale-95 mx-auto overflow-hidden"
             >
-              <img src={WA_ICON_URL} alt="" className="w-14 h-14 object-contain scale-[1.3] transition-transform" />
+              <img src={WA_ICON_URL} alt="" className="w-14 h-14 object-contain scale-[1.9] transition-transform" />
               <span>Fale conosco no WhatsApp</span>
             </button>
           </div>

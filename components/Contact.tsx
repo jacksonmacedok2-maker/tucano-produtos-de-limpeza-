@@ -32,30 +32,36 @@ const Contact: React.FC = () => {
         </div>
 
         <div className="max-w-6xl mx-auto space-y-12">
-          {/* DESTAQUE PRINCIPAL — WHATSAPP */}
-          <div className="bg-gradient-to-br from-[#25D366] to-[#1ebe5d] rounded-[2.5rem] p-8 lg:p-12 text-white shadow-[0_20px_50px_-15px_rgba(37,211,102,0.4)] flex flex-col lg:flex-row items-center justify-between gap-8 relative overflow-hidden group">
-            {/* Brilho decorativo no card */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-32 -mt-32 blur-3xl group-hover:scale-110 transition-transform duration-700"></div>
+          {/* DESTAQUE PRINCIPAL — INFORMATIVO PREMIUM COM EFEITO SHINE */}
+          <div className="relative overflow-hidden bg-gradient-to-br from-[#22c35e] via-[#25D366] to-[#1ebe5d] rounded-[2.5rem] p-12 lg:p-20 text-white shadow-[0_30px_60px_-15px_rgba(37,211,102,0.3)] flex flex-col items-center justify-center text-center group">
             
-            <div className="text-center lg:text-left relative z-10 max-w-xl">
-              <h3 className="text-3xl lg:text-4xl font-black mb-4">Fale conosco pelo WhatsApp</h3>
-              <p className="text-white/90 text-lg font-medium leading-relaxed">
-                Dúvidas, informações sobre produtos ou onde comprar — nossa equipe está online para te atender agora.
-              </p>
+            {/* Efeito Shine (Brilho que passa) */}
+            <div className="absolute inset-0 pointer-events-none">
+              <div className="shine-effect"></div>
             </div>
 
-            <button 
-              onClick={handleWhatsAppClick}
-              className="relative z-10 flex items-center justify-center gap-4 bg-white text-[#25D366] px-10 py-5 lg:px-14 lg:py-6 rounded-2xl font-black text-xl lg:text-2xl shadow-2xl hover:scale-105 active:scale-95 transition-all w-full lg:w-auto overflow-hidden"
-            >
-              <img src={WA_ICON_URL} alt="" className="w-14 h-14 lg:w-16 lg:h-16 object-contain scale-[1.3] transition-transform" />
-              <span>Falar no WhatsApp agora</span>
-            </button>
+            {/* Brilhos decorativos estáticos */}
+            <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.2),transparent_70%)] pointer-events-none"></div>
+            <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full -mr-32 -mt-32 blur-3xl group-hover:scale-110 transition-transform duration-1000"></div>
+            
+            <div className="relative z-10 flex flex-col items-center">
+              <div className="mb-8 p-4 bg-white/10 backdrop-blur-md rounded-3xl border border-white/20 animate-float-subtle">
+                <CheckCircle2 size={48} className="text-white" strokeWidth={2.5} />
+              </div>
+
+              <h3 className="text-3xl lg:text-6xl font-black mb-8 tracking-tight drop-shadow-md">
+                Atendimento Instantâneo
+              </h3>
+              
+              <p className="text-white/95 text-xl lg:text-2xl font-medium leading-[1.6] max-w-3xl mx-auto drop-shadow-sm">
+                Nossa equipe de suporte prioriza o <span className="font-black text-white underline decoration-white/30 underline-offset-8">WhatsApp</span> para garantir que você não espere. Estamos online agora para te ajudar!
+              </p>
+            </div>
           </div>
 
           {/* OUTROS CANAIS (Cards) */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* Card WhatsApp - Retornado para escala original de 1.45 */}
+            {/* Card WhatsApp - Canal de Ação Principal agora aqui */}
             <div 
               className="bg-slate-50 p-8 rounded-[2rem] border border-slate-100 flex flex-col items-center text-center hover:shadow-xl hover:bg-white transition-all duration-300 group cursor-pointer"
               onClick={handleWhatsAppClick}
@@ -64,14 +70,15 @@ const Contact: React.FC = () => {
                 <img 
                   src={WA_ICON_URL} 
                   alt="WhatsApp" 
-                  className="w-full h-full object-contain scale-[1.45] absolute inset-0 m-auto" 
+                  className="w-full h-full object-contain scale-[2.5] absolute inset-0 m-auto" 
                 />
               </div>
               <h4 className="text-xl font-black text-slate-800 mb-2">WhatsApp</h4>
-              <p className="text-slate-500 font-bold">{CONTACT_INFO.whatsappDisplay}</p>
+              <p className="text-tucano-blue font-bold text-lg">{CONTACT_INFO.whatsappDisplay}</p>
+              <span className="mt-4 text-xs font-black text-green-600 uppercase tracking-widest bg-green-50 px-3 py-1 rounded-full">Clique para abrir</span>
             </div>
 
-            {/* Card Email - Consistência Visual */}
+            {/* Card Email */}
             <div className="bg-slate-50 p-8 rounded-[2rem] border border-slate-100 flex flex-col items-center text-center hover:shadow-xl hover:bg-white transition-all duration-300 group">
               <div className="w-24 h-24 bg-blue-100 text-tucano-blue rounded-3xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                 <Mail size={56} strokeWidth={1.5} />
@@ -80,7 +87,7 @@ const Contact: React.FC = () => {
               <p className="text-slate-500 font-bold">{CONTACT_INFO.email}</p>
             </div>
 
-            {/* Card Instagram - Mantido conforme o desejado anteriormente */}
+            {/* Card Instagram */}
             <a 
               href={CONTACT_INFO.instagram}
               target="_blank"
@@ -165,6 +172,37 @@ const Contact: React.FC = () => {
         }
         .animate-bounce-slow {
           animation: bounce-slow 3s ease-in-out infinite;
+        }
+
+        @keyframes float-subtle {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-10px); }
+        }
+        .animate-float-subtle {
+          animation: float-subtle 4s ease-in-out infinite;
+        }
+        
+        /* Efeito Shine Premium */
+        .shine-effect {
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 50%;
+          height: 100%;
+          background: linear-gradient(
+            to right,
+            transparent,
+            rgba(255, 255, 255, 0.2),
+            transparent
+          );
+          transform: skewX(-25deg);
+          animation: shine-sweep 6s infinite;
+        }
+
+        @keyframes shine-sweep {
+          0% { left: -100%; }
+          20% { left: 150%; }
+          100% { left: 150%; }
         }
       `}</style>
     </section>

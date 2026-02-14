@@ -46,7 +46,7 @@ const WhatsAppFloatingButton: React.FC = () => {
           
           <div className="flex items-start gap-3">
             <div className="bg-green-50 p-1.5 rounded-full shrink-0 flex items-center justify-center overflow-hidden">
-              <img src={WA_ICON_URL} alt="" className="w-8 h-8 object-contain scale-[1.3]" />
+              <img src={WA_ICON_URL} alt="" className="w-8 h-8 object-contain scale-[1.9]" />
             </div>
             <div>
               <p className="text-sm font-bold leading-tight mb-1">Dúvidas?</p>
@@ -74,7 +74,7 @@ const WhatsAppFloatingButton: React.FC = () => {
       >
         {/* Efeito de brilho no hover */}
         <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity"></div>
-        <img src={WA_ICON_URL} alt="WhatsApp" className="w-14 h-14 object-contain scale-[1.4] group-hover:rotate-12 transition-transform duration-300" />
+        <img src={WA_ICON_URL} alt="WhatsApp" className="w-14 h-14 object-contain scale-[1.9] group-hover:rotate-12 transition-transform duration-300" />
       </button>
     </div>
   );

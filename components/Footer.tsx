@@ -31,7 +31,7 @@ const Footer: React.FC = () => {
                Limpando lares brasileiros com qualidade superior, cuidado e o melhor custo-benefício do mercado.
              </p>
 
-             {/* Redes Sociais Ampliadas - Retornando ao destaque original do WhatsApp */}
+             {/* Redes Sociais Ampliadas */}
              <div className="flex space-x-5">
                {/* Instagram Button */}
                <a 
@@ -50,7 +50,7 @@ const Footer: React.FC = () => {
                  </div>
                </a>
 
-               {/* WhatsApp Button - Retornado para o tamanho maior que estava antes */}
+               {/* WhatsApp Button - Escala aumentada para preenchimento total */}
                <a 
                 href={`https://wa.me/${CONTACT_INFO.whatsapp}?text=${encodeURIComponent(CONTACT_INFO.waMessage)}`}
                 target="_blank" 
@@ -62,7 +62,7 @@ const Footer: React.FC = () => {
                     <img 
                       src={WA_ICON_URL} 
                       alt="WhatsApp" 
-                      className="w-full h-full object-contain scale-[1.5] md:scale-[1.65] group-hover:scale-[1.8] transition-transform duration-300" 
+                      className="w-full h-full object-contain scale-[1.9] md:scale-[2.1] group-hover:scale-[2.3] transition-transform duration-300" 
                     />
                  </div>
                </a>
@@ -110,12 +110,9 @@ const Footer: React.FC = () => {
                   href={`https://wa.me/${CONTACT_INFO.whatsapp}?text=${encodeURIComponent(CONTACT_INFO.waMessage)}`}
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className={`${footerLinkClass} flex items-center gap-3 group`}
+                  className={footerLinkClass}
                 >
-                  <div className="overflow-hidden w-7 h-7 flex items-center justify-center bg-slate-800 rounded-lg p-1 group-hover:bg-slate-700 transition-colors">
-                    <img src={WA_ICON_URL} alt="" className="w-full h-full object-contain scale-[1.5] group-hover:scale-[1.7] transition-transform duration-300" />
-                  </div>
-                  <span>{CONTACT_INFO.whatsappDisplay}</span>
+                  {CONTACT_INFO.whatsappDisplay}
                 </a>
               </li>
               <li>
