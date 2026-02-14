@@ -6,6 +6,8 @@ export interface Product {
   description: string;
   image: string;
   isBestSeller?: boolean;
+  attributes?: string[];
+  volume?: string;
 }
 
 export interface Testimonial {

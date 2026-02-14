@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Menu, X, Instagram, MessageCircle } from 'lucide-react';
+import { Menu, X, Instagram } from 'lucide-react';
 import { CONTACT_INFO, LOGO_URL } from '../constants';
 
 interface HeaderProps {
@@ -34,11 +34,6 @@ const Header: React.FC<HeaderProps> = ({ scrolled }) => {
       });
     }
     setIsOpen(false);
-  };
-
-  const handleWhatsAppClick = () => {
-    const url = `https://wa.me/${CONTACT_INFO.whatsapp}?text=${encodeURIComponent(CONTACT_INFO.waMessage)}`;
-    window.open(url, '_blank');
   };
 
   return (
@@ -86,15 +81,8 @@ const Header: React.FC<HeaderProps> = ({ scrolled }) => {
               rel="noopener noreferrer"
               className={`transition-colors duration-300 ${scrolled ? 'text-slate-700 hover:text-pink-600' : 'text-white hover:text-tucano-yellow'}`}
             >
-              <Instagram size={24} />
+              <Instagram size={28} />
             </a>
-            <button 
-              onClick={handleWhatsAppClick}
-              className="bg-tucano-yellow text-tucano-blue flex items-center gap-2 px-8 py-4 rounded-full font-black shadow-[0_8px_20px_rgba(255,215,0,0.3)] hover:scale-105 hover:shadow-xl transition-all"
-            >
-              <MessageCircle size={22} />
-              <span className="hidden lg:inline">WhatsApp</span>
-            </button>
           </div>
         </nav>
 
@@ -119,14 +107,15 @@ const Header: React.FC<HeaderProps> = ({ scrolled }) => {
               {item.label}
             </a>
           ))}
-          <div className="flex flex-col gap-4 mt-8">
-            <button 
-              onClick={handleWhatsAppClick}
-              className="bg-tucano-blue text-white flex items-center justify-center gap-3 w-full py-5 rounded-2xl font-black text-xl shadow-lg"
+          <div className="flex justify-center gap-6 mt-6">
+             <a 
+              href={CONTACT_INFO.instagram} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-slate-700 hover:text-pink-600 transition-colors"
             >
-              <MessageCircle size={28} />
-              <span>WhatsApp Comercial</span>
-            </button>
+              <Instagram size={32} />
+            </a>
           </div>
         </div>
       )}

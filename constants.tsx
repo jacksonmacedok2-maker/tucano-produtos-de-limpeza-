@@ -31,48 +31,60 @@ export const PRODUCTS: Product[] = [
     name: "Sabão em Pó Tucano Ativo",
     category: "Sabão em pó",
     description: "Limpeza profunda e perfume duradouro para todas as suas roupas brancas e coloridas.",
-    image: "https://picsum.photos/seed/tucano-soap/400/500",
-    isBestSeller: true
+    image: "https://lh3.googleusercontent.com/d/1L_z9f_Uv-qQp5A-k6_N9u-GvXp-vG8zR", // Placeholder real se disponível, senão o componente trata
+    isBestSeller: true,
+    volume: "800g",
+    attributes: ["Perfume ativo", "Brancura total"]
   },
   {
     id: 2,
     name: "Detergente Neutro Plus",
     category: "Detergentes",
-    description: "Máximo poder desengordurante com proteção para as mãos.",
-    image: "https://picsum.photos/seed/tucano-detergent/400/500",
-    isBestSeller: false
+    description: "Máximo poder desengordurante com proteção para as mãos e brilho instantâneo.",
+    image: "",
+    isBestSeller: false,
+    volume: "500ml",
+    attributes: ["Desengordurante", "Glicerinado"]
   },
   {
     id: 3,
     name: "Amaciante Flores do Campo",
     category: "Amaciantes",
-    description: "Roupas macias e perfumadas por muito mais tempo. Fragrância premium.",
-    image: "https://picsum.photos/seed/tucano-soft/400/500",
-    isBestSeller: true
+    description: "Roupas macias e perfumadas por muito mais tempo com fragrância premium exclusiva.",
+    image: "",
+    isBestSeller: true,
+    volume: "2L",
+    attributes: ["Perfume Premium", "Fácil passar"]
   },
   {
     id: 4,
     name: "Multiuso Brilho Instantâneo",
-    category: "Limpadores multiuso",
-    description: "Limpeza rápida e eficaz para todas as superfícies da sua casa.",
-    image: "https://picsum.photos/seed/tucano-multi/400/500",
-    isBestSeller: false
+    category: "Limpadores",
+    description: "Limpeza rápida e eficaz para todas as superfícies da sua casa sem esforço.",
+    image: "",
+    isBestSeller: false,
+    volume: "500ml",
+    attributes: ["Ação rápida", "Multisuperfície"]
   },
   {
     id: 5,
     name: "Lava Roupas Líquido Coco",
     category: "Sabão Líquido",
-    description: "Cuidado delicado para roupas sensíveis e de bebê.",
-    image: "https://picsum.photos/seed/tucano-liquid/400/500",
-    isBestSeller: false
+    description: "Cuidado delicado e proteção das fibras para roupas sensíveis e de bebê.",
+    image: "",
+    isBestSeller: false,
+    volume: "1L",
+    attributes: ["Toque de coco", "Hipoalergênico"]
   },
   {
     id: 6,
     name: "Desinfetante Lavanda",
-    category: "Limpadores multiuso",
-    description: "Elimina 99.9% dos germes e bactérias com aroma refrescante.",
-    image: "https://picsum.photos/seed/tucano-disinfect/400/500",
-    isBestSeller: true
+    category: "Limpadores",
+    description: "Elimina 99.9% dos germes e bactérias deixando um aroma refrescante de lavanda.",
+    image: "",
+    isBestSeller: true,
+    volume: "2L",
+    attributes: ["Mata germes", "Fragrância 24h"]
   }
 ];
 
