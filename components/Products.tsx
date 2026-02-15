@@ -62,17 +62,18 @@ const Products: React.FC = () => {
                   <img src={product.image} alt={product.name} className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700" />
                 ) : (
                   <div className="flex flex-col items-center justify-center text-slate-200">
-                    {/* Fix: removed sm:size and used className for responsiveness */}
                     <Package className="w-20 h-20 sm:w-[100px] sm:h-[100px]" strokeWidth={1} />
                     <span className="text-[10px] font-black tracking-widest uppercase mt-4 opacity-40">Em breve</span>
                   </div>
                 )}
                 
                 {product.isBestSeller && (
-                  <div className="absolute top-4 left-4 sm:top-8 sm:left-8 bg-tucano-yellow text-tucano-blue px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl sm:rounded-2xl text-[9px] sm:text-[10px] font-black flex items-center gap-2 shadow-lg">
-                    {/* Fix: removed sm:size and used className for responsiveness */}
-                    <Star className="w-[10px] h-[10px] sm:w-3 sm:h-3" fill="currentColor" />
-                    BEST SELLER
+                  <div className="absolute top-4 right-4 sm:top-6 sm:right-6 overflow-hidden bg-gradient-to-br from-[#FFEA00] via-[#FFFF00] to-[#FFB800] text-tucano-blue px-3 py-1.5 sm:px-5 sm:py-2.5 rounded-xl sm:rounded-2xl text-[10px] sm:text-[11px] font-black flex items-center gap-2 shadow-[0_4px_12px_rgba(255,234,0,0.4)] z-20 border-2 border-white/60 animate-glow-pulse">
+                    {/* Efeito de brilho passando (Shine) */}
+                    <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/70 to-transparent -translate-x-full animate-shine-badge pointer-events-none"></div>
+                    
+                    <Star className="w-3.5 h-3.5 sm:w-4 sm:h-4 animate-spin-slow" fill="currentColor" />
+                    <span className="relative z-10 tracking-[0.15em]">PREMIUM</span>
                   </div>
                 )}
               </div>
@@ -104,6 +105,31 @@ const Products: React.FC = () => {
           ))}
         </div>
       </div>
+
+      <style>{`
+        @keyframes shine-badge {
+          0% { transform: translateX(-150%) skewX(-25deg); }
+          20% { transform: translateX(250%) skewX(-25deg); }
+          100% { transform: translateX(250%) skewX(-25deg); }
+        }
+        @keyframes glow-pulse {
+          0%, 100% { box-shadow: 0 4px 10px rgba(255, 234, 0, 0.4); }
+          50% { box-shadow: 0 4px 20px rgba(255, 234, 0, 0.6); }
+        }
+        @keyframes spin-slow {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        .animate-shine-badge {
+          animation: shine-badge 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
+        .animate-glow-pulse {
+          animation: glow-pulse 2s ease-in-out infinite;
+        }
+        .animate-spin-slow {
+          animation: spin-slow 6s linear infinite;
+        }
+      `}</style>
     </section>
   );
 };
