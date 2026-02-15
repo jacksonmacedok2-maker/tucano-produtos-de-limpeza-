@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShoppingBag, CheckCircle2 } from 'lucide-react';
+import { ShoppingBag } from 'lucide-react';
 
 const Hero: React.FC = () => {
   const handleScrollToProducts = () => {
@@ -12,7 +12,7 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <section id="inicio" className="relative min-h-screen flex items-center pt-32 overflow-hidden bg-slate-900">
+    <section id="inicio" className="relative min-h-screen flex items-center pt-20 sm:pt-32 overflow-hidden bg-slate-900">
       <div className="absolute inset-0 z-0">
         <img 
           src="https://lh3.googleusercontent.com/d/1FnhW96CnNIpsCz2Jtiu5FXBEu4uGQK_6" 
@@ -24,34 +24,23 @@ const Hero: React.FC = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent"></div>
       </div>
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-5 sm:px-6 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black leading-tight mb-8 text-white tracking-tight drop-shadow-2xl">
-            Sua casa merece <br />
+          <h1 className="text-[2.6rem] sm:text-5xl md:text-7xl lg:text-8xl font-black leading-[1.1] sm:leading-tight mb-6 sm:mb-8 text-white tracking-tight drop-shadow-2xl">
+            Sua casa merece <br className="hidden sm:block" />
             <span className="text-tucano-yellow">brilho e cuidado.</span>
           </h1>
           
-          <p className="text-lg md:text-xl text-slate-100 mb-10 max-w-2xl mx-auto leading-relaxed font-medium drop-shadow-md">
-            Produtos de alta performance com fragrâncias que transformam o ambiente. Limpeza profunda com o rendimento que sua família precisa.
+          <p className="text-base sm:text-lg md:text-xl text-slate-100 mb-10 sm:mb-14 max-w-[20rem] sm:max-w-2xl mx-auto leading-relaxed font-medium drop-shadow-md">
+            Produtos de alta performance com fragrâncias que transformam o ambiente. Limpeza profunda com o rendimento que você precisa.
           </p>
-
-          <div className="flex flex-wrap justify-center items-center gap-4 mb-10">
-            <div className="flex items-center gap-2 bg-white/20 backdrop-blur-md px-4 py-2 rounded-lg text-white text-sm font-semibold border border-white/20">
-              <CheckCircle2 size={16} className="text-tucano-yellow" />
-              <span>Perfume de longa duração</span>
-            </div>
-            <div className="flex items-center gap-2 bg-white/20 backdrop-blur-md px-4 py-2 rounded-lg text-white text-sm font-semibold border border-white/20">
-              <CheckCircle2 size={16} className="text-tucano-yellow" />
-              <span>Máxima economia</span>
-            </div>
-          </div>
           
-          <div className="flex justify-center items-center">
+          <div className="flex justify-center items-center px-4">
             <button 
               onClick={handleScrollToProducts}
-              className="w-full sm:w-auto flex items-center justify-center gap-3 bg-tucano-yellow text-tucano-blue px-12 py-5 rounded-2xl font-black text-xl hover:bg-yellow-400 transition-all shadow-[0_20px_40px_-12px_rgba(255,215,0,0.5)] hover:-translate-y-1 active:scale-95"
+              className="w-full sm:w-auto flex items-center justify-center gap-3 bg-tucano-yellow text-tucano-blue px-10 py-4 sm:px-12 sm:py-5 rounded-2xl font-black text-lg sm:text-xl hover:bg-yellow-400 transition-all shadow-[0_20px_40px_-12px_rgba(255,215,0,0.5)] hover:-translate-y-1 active:scale-95"
             >
-              <ShoppingBag size={24} />
+              <ShoppingBag size={22} className="sm:w-6 sm:h-6" />
               <span>Ver Produtos</span>
             </button>
           </div>

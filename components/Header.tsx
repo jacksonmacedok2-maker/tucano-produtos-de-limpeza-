@@ -14,7 +14,8 @@ const navItems = [
   { label: 'Contato', id: 'contato' },
 ];
 
-const Header: React.FC<HeaderProps> = ({ scrolled }) => {
+const Header: React.FC = HeaderProps => {
+  const { scrolled } = HeaderProps;
   const [isOpen, setIsOpen] = useState(false);
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
@@ -55,7 +56,7 @@ const Header: React.FC<HeaderProps> = ({ scrolled }) => {
           />
         </a>
 
-        {/* Desktop Nav: Agora com efeito de botão/pílula no hover */}
+        {/* Desktop Nav */}
         <nav className="hidden md:flex items-center space-x-4">
           {navItems.map((item) => (
             <a 
@@ -64,9 +65,10 @@ const Header: React.FC<HeaderProps> = ({ scrolled }) => {
               onClick={(e) => handleNavClick(e, item.id)}
               className={`header-nav-link px-5 py-2.5 rounded-full font-black text-[11px] uppercase tracking-[0.2em] transition-all duration-300 
                 ${scrolled 
-                  ? 'text-slate-700 hover:bg-tucano-blue hover:text-white hover:shadow-lg' 
-                  : 'text-white hover:bg-tucano-blue hover:text-white hover:shadow-lg'
+                  ? 'text-tucano-blue hover:bg-tucano-blue hover:text-white hover:shadow-lg' 
+                  : 'text-tucano-yellow hover:bg-tucano-blue hover:text-white hover:shadow-xl hover:scale-105'
                 }`}
+              style={!scrolled ? { textShadow: '0 2px 4px rgba(0,0,0,0.5)' } : {}}
             >
               {item.label}
             </a>
@@ -75,7 +77,7 @@ const Header: React.FC<HeaderProps> = ({ scrolled }) => {
 
         {/* Mobile Menu Toggle */}
         <div className="md:hidden flex items-center">
-           <button onClick={() => setIsOpen(!isOpen)} className={scrolled ? 'text-tucano-blue' : 'text-white'}>
+           <button onClick={() => setIsOpen(!isOpen)} className={scrolled ? 'text-tucano-blue' : 'text-tucano-yellow'} style={!scrolled ? { filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.5))' } : {}}>
             {isOpen ? <X size={42} /> : <Menu size={42} />}
           </button>
         </div>
@@ -89,7 +91,7 @@ const Header: React.FC<HeaderProps> = ({ scrolled }) => {
               key={item.id} 
               href={`#${item.id}`}
               onClick={(e) => handleNavClick(e, item.id)}
-              className="text-2xl font-black text-slate-800 py-3 border-b border-slate-50 uppercase tracking-tighter hover:text-tucano-blue transition-colors"
+              className="text-2xl font-black text-tucano-blue py-3 border-b border-slate-50 uppercase tracking-tighter hover:bg-slate-50 transition-colors px-4 rounded-xl"
             >
               {item.label}
             </a>

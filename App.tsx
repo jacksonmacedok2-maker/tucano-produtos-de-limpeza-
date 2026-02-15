@@ -8,11 +8,9 @@ import About from './components/About';
 import Distribution from './components/Distribution';
 import Testimonials from './components/Testimonials';
 import FAQ from './components/FAQ';
-import FinalCTA from './components/FinalCTA';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import WhatsAppFloatingButton from './components/WhatsAppFloatingButton';
-import IntroAnimation from './components/IntroAnimation';
 import SoapBubbles from './components/SoapBubbles';
 
 const App: React.FC = () => {
@@ -28,7 +26,6 @@ const App: React.FC = () => {
 
   return (
     <div className="relative min-h-screen">
-      <IntroAnimation />
       <SoapBubbles />
       <Header scrolled={scrolled} />
       <main>
@@ -40,7 +37,6 @@ const App: React.FC = () => {
         <Distribution />
         <Testimonials />
         <FAQ />
-        <FinalCTA />
         <Contact />
       </main>
       <Footer />

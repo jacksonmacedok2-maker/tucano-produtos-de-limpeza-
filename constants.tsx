@@ -25,7 +25,8 @@ export const CONTACT_INFO = {
   instagram: "https://www.instagram.com/produtostucano/",
   instagramDisplay: "@produtostucano",
   waMessage: "Olá! Quero saber mais sobre os produtos Tucano.",
-  email: "contato@tucanolimpeza.com.br"
+  email: "jacksonmacedok2@gmail.com",
+  formspreeId: "mojndzbp" 
 };
 
 export const PRODUCTS: Product[] = [

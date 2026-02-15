@@ -1,23 +1,43 @@
 import React, { useState } from 'react';
-import { Mail, Send, CheckCircle2, Loader2 } from 'lucide-react';
+import { Mail, Send, CheckCircle2, Loader2, AlertCircle } from 'lucide-react';
 import { CONTACT_INFO, WA_ICON_URL, INSTA_ICON_URL } from '../constants';
 
 const Contact: React.FC = () => {
-  const [formState, setFormState] = useState<'idle' | 'sending' | 'success'>('idle');
+  const [formState, setFormState] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
 
   const handleWhatsAppClick = () => {
     const url = `https://wa.me/${CONTACT_INFO.whatsapp}?text=${encodeURIComponent(CONTACT_INFO.waMessage)}`;
     window.open(url, '_blank');
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setFormState('sending');
-    // Simulando envio da API
-    setTimeout(() => {
-      setFormState('success');
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch(`https://formspree.io/f/${CONTACT_INFO.formspreeId}`, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        setFormState('success');
+        form.reset();
+        setTimeout(() => setFormState('idle'), 5000);
+      } else {
+        throw new Error('Falha no envio');
+      }
+    } catch (error) {
+      console.error("Erro ao enviar formulário:", error);
+      setFormState('error');
       setTimeout(() => setFormState('idle'), 5000);
-    }, 2000);
+    }
   };
 
   return (
@@ -87,6 +107,15 @@ const Contact: React.FC = () => {
               </div>
             )}
 
+            {formState === 'error' && (
+              <div className="absolute inset-x-0 top-0 z-30 bg-red-500 text-white p-4 text-center animate-in slide-in-from-top duration-300">
+                <div className="flex items-center justify-center gap-2">
+                  <AlertCircle size={18} />
+                  <span className="font-bold">Ops! Algo deu errado. Tente novamente ou use o WhatsApp.</span>
+                </div>
+              </div>
+            )}
+
             <div className="max-w-3xl mx-auto">
               <div className="text-center mb-10">
                 <h3 className="text-2xl font-black text-slate-800 mb-2">Envie uma mensagem</h3>
@@ -96,31 +125,32 @@ const Contact: React.FC = () => {
               <form className="grid grid-cols-1 md:grid-cols-2 gap-6" onSubmit={handleSubmit}>
                 <div className="space-y-1.5">
                   <label className="text-[10px] font-black text-slate-600 ml-1 uppercase tracking-wider">Nome Completo</label>
-                  <input required type="text" placeholder="Ex: Maria Souza" className="w-full bg-white border border-slate-200 rounded-2xl px-6 py-4 text-slate-900 focus:outline-none focus:ring-4 focus:ring-tucano-blue/10 focus:border-tucano-blue transition-all" />
+                  <input required name="name" type="text" placeholder="Ex: Maria Souza" className="w-full bg-white border border-slate-200 rounded-2xl px-6 py-4 text-slate-900 focus:outline-none focus:ring-4 focus:ring-tucano-blue/10 focus:border-tucano-blue transition-all" />
                 </div>
                 
                 <div className="space-y-1.5">
                   <label className="text-[10px] font-black text-slate-600 ml-1 uppercase tracking-wider">Seu Melhor E-mail</label>
-                  <input required type="email" placeholder="email@exemplo.com" className="w-full bg-white border border-slate-200 rounded-2xl px-6 py-4 text-slate-900 focus:outline-none focus:ring-4 focus:ring-tucano-blue/10 focus:border-tucano-blue transition-all" />
+                  <input required name="email" type="email" placeholder="email@exemplo.com" className="w-full bg-white border border-slate-200 rounded-2xl px-6 py-4 text-slate-900 focus:outline-none focus:ring-4 focus:ring-tucano-blue/10 focus:border-tucano-blue transition-all" />
                 </div>
 
                 <div className="md:col-span-2 space-y-1.5">
                   <label className="text-[10px] font-black text-slate-600 ml-1 uppercase tracking-wider">Como podemos ajudar?</label>
-                  <select className="w-full bg-white border border-slate-200 rounded-2xl px-6 py-4 text-slate-900 focus:outline-none focus:ring-4 focus:ring-tucano-blue/10 focus:border-tucano-blue appearance-none transition-all cursor-pointer">
-                     <option>Quero comprar para minha casa</option>
-                     <option>Desejo ser um lojista parceiro</option>
-                     <option>Informações sobre distribuição</option>
-                     <option>Outros assuntos</option>
+                  <select name="subject" className="w-full bg-white border border-slate-200 rounded-2xl px-6 py-4 text-slate-900 focus:outline-none focus:ring-4 focus:ring-tucano-blue/10 focus:border-tucano-blue appearance-none transition-all cursor-pointer">
+                     <option value="compra">Quero comprar para minha casa</option>
+                     <option value="lojista">Desejo ser um lojista parceiro</option>
+                     <option value="distribuicao">Informações sobre distribuição</option>
+                     <option value="outros">Outros assuntos</option>
                   </select>
                 </div>
 
                 <div className="md:col-span-2 space-y-1.5">
                   <label className="text-[10px] font-black text-slate-600 ml-1 uppercase tracking-wider">Mensagem</label>
-                  <textarea required rows={4} placeholder="Escreva aqui sua mensagem..." className="w-full bg-white border border-slate-200 rounded-2xl px-6 py-4 text-slate-900 focus:outline-none focus:ring-4 focus:ring-tucano-blue/10 focus:border-tucano-blue transition-all resize-none"></textarea>
+                  <textarea required name="message" rows={4} placeholder="Escreva aqui sua mensagem..." className="w-full bg-white border border-slate-200 rounded-2xl px-6 py-4 text-slate-900 focus:outline-none focus:ring-4 focus:ring-tucano-blue/10 focus:border-tucano-blue transition-all resize-none"></textarea>
                 </div>
 
                 <div className="md:col-span-2 pt-4">
                   <button 
+                    type="submit"
                     disabled={formState === 'sending'}
                     className="w-full flex items-center justify-center gap-3 bg-tucano-blue text-white py-5 rounded-2xl font-black text-lg shadow-xl hover:bg-blue-700 transition-all group active:scale-[0.98] disabled:opacity-70"
                   >
