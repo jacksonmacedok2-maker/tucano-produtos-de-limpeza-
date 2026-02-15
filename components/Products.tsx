@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
-import { PRODUCTS, CONTACT_INFO, WA_ICON_URL } from '../constants';
-import { MessageCircle, Star, Droplets, Package } from 'lucide-react';
+import { PRODUCTS, CONTACT_INFO } from '../constants';
+import { Package, Star, Sparkles as SparklesIcon } from 'lucide-react';
 
 const categories = ["Todos", "Sabão em pó", "Detergentes", "Amaciantes", "Limpadores", "Sabão Líquido"];
 
@@ -14,34 +14,35 @@ const Products: React.FC = () => {
 
   const handleBuyClick = (productName: string) => {
     const text = `Olá! Tenho interesse em comprar o ${productName}. Poderia me informar mais?`;
-    const url = `https://wa.me/${CONTACT_INFO.whatsapp}?text=${encodeURIComponent(text)}`;
-    window.open(url, '_blank');
+    window.open(`https://wa.me/${CONTACT_INFO.whatsapp}?text=${encodeURIComponent(text)}`, '_blank');
   };
 
   return (
-    <section id="produtos" className="py-24 bg-white">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <span className="text-tucano-blue font-black uppercase tracking-[0.2em] text-xs mb-4 block">Portfólio Tucano</span>
-          <h2 className="text-4xl lg:text-5xl font-extrabold text-slate-900 mb-6">
-            Nossa Linha Completa
+    <section id="produtos" className="py-16 sm:py-32 bg-white relative overflow-hidden">
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="text-center mb-10 sm:mb-20">
+          <div className="inline-flex items-center gap-2 text-tucano-blue font-black uppercase tracking-[0.3em] text-[10px] sm:text-xs mb-4 sm:mb-6 px-4 py-2 bg-blue-50 rounded-full">
+            <SparklesIcon size={14} />
+            Qualidade Tucano
+          </div>
+          <h2 className="text-3xl sm:text-4xl lg:text-6xl font-black text-slate-900 mb-4 sm:mb-8 tracking-tight leading-tight">
+            Nossa Linha <span className="text-tucano-blue">Essencial</span>
           </h2>
-          <p className="text-slate-500 text-lg max-w-2xl mx-auto leading-relaxed">
-            Produtos desenvolvidos para entregar máxima eficiência com a economia que sua família merece.
+          <p className="text-slate-500 text-lg sm:text-xl max-w-3xl mx-auto leading-relaxed font-medium">
+            Fórmulas de alta performance desenhadas para o máximo rendimento em cada lavagem.
           </p>
         </div>
 
-        {/* Categories Container with Horizontal Scroll on Mobile */}
-        <div className="mb-14 -mx-6 px-6 overflow-x-auto scrollbar-hide">
+        <div className="mb-10 sm:mb-16 -mx-6 px-6 overflow-x-auto scrollbar-hide">
           <div className="flex justify-start md:justify-center gap-3 min-w-max pb-4">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`category-pill px-6 py-2.5 rounded-full font-bold text-sm transition-all duration-300 border-2 ${
+                className={`category-pill px-6 py-2.5 sm:px-8 sm:py-3.5 rounded-xl sm:rounded-2xl font-black text-xs sm:text-sm border-2 ${
                   activeCategory === cat 
-                  ? 'bg-tucano-blue text-white border-tucano-blue shadow-lg shadow-blue-100' 
-                  : 'bg-white text-slate-600 border-slate-200'
+                  ? 'bg-tucano-blue text-white border-tucano-blue shadow-lg scale-105' 
+                  : 'bg-white text-slate-500 border-slate-100 hover:border-blue-200'
                 }`}
               >
                 {cat}
@@ -50,79 +51,52 @@ const Products: React.FC = () => {
           </div>
         </div>
 
-        {/* Product Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-10">
           {filteredProducts.map((product) => (
             <div 
               key={product.id} 
-              className="group flex flex-col bg-white rounded-[2.5rem] overflow-hidden border border-slate-100 shadow-[0_10px_40px_-15px_rgba(0,0,0,0.05)] hover:shadow-[0_20px_50px_-10px_rgba(0,86,179,0.15)] hover:-translate-y-2 transition-all duration-500 h-full"
+              className="group flex flex-col bg-slate-50 rounded-[2rem] sm:rounded-[3rem] overflow-hidden hover:shadow-2xl transition-all duration-500 h-full border border-transparent hover:border-slate-100"
             >
-              {/* Product Image Area */}
-              <div className="relative h-64 bg-slate-50 overflow-hidden flex items-center justify-center">
+              <div className="relative h-64 sm:h-80 bg-white overflow-hidden flex items-center justify-center p-8 sm:p-10">
                 {product.image ? (
-                  <img 
-                    src={product.image} 
-                    alt={product.name} 
-                    className="w-full h-full object-contain p-8 group-hover:scale-110 transition-transform duration-700"
-                  />
+                  <img src={product.image} alt={product.name} className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700" />
                 ) : (
-                  <div className="flex flex-col items-center justify-center text-slate-300">
-                    <div className="relative">
-                      <Package size={80} strokeWidth={1} />
-                      <span className="absolute -bottom-2 -right-2 text-blue-200"><Droplets size={32} /></span>
-                    </div>
-                    <span className="text-xs font-bold uppercase tracking-widest mt-4 opacity-50">Imagem em breve</span>
+                  <div className="flex flex-col items-center justify-center text-slate-200">
+                    {/* Fix: removed sm:size and used className for responsiveness */}
+                    <Package className="w-20 h-20 sm:w-[100px] sm:h-[100px]" strokeWidth={1} />
+                    <span className="text-[10px] font-black tracking-widest uppercase mt-4 opacity-40">Em breve</span>
                   </div>
                 )}
                 
-                {/* Best Seller Badge */}
                 {product.isBestSeller && (
-                  <div className="absolute top-6 left-6 bg-tucano-yellow text-tucano-blue px-3 py-1.5 rounded-xl text-[10px] font-black flex items-center gap-1.5 shadow-xl animate-pulse">
-                    < Star size={12} fill="currentColor" />
-                    PREMIUM
-                  </div>
-                )}
-
-                {/* Volume Tag */}
-                {product.volume && (
-                  <div className="absolute bottom-6 right-6 bg-white/80 backdrop-blur-md text-slate-700 px-3 py-1 rounded-lg text-xs font-bold border border-white shadow-sm">
-                    {product.volume}
+                  <div className="absolute top-4 left-4 sm:top-8 sm:left-8 bg-tucano-yellow text-tucano-blue px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl sm:rounded-2xl text-[9px] sm:text-[10px] font-black flex items-center gap-2 shadow-lg">
+                    {/* Fix: removed sm:size and used className for responsiveness */}
+                    <Star className="w-[10px] h-[10px] sm:w-3 sm:h-3" fill="currentColor" />
+                    BEST SELLER
                   </div>
                 )}
               </div>
 
-              {/* Product Content */}
-              <div className="p-8 flex flex-col flex-grow">
-                <span className="text-tucano-blue text-[10px] font-black tracking-widest uppercase mb-2">
-                  {product.category}
-                </span>
+              <div className="p-6 sm:p-10 flex flex-col flex-grow">
+                <div className="flex justify-between items-start mb-3 sm:mb-4">
+                  <span className="text-tucano-blue text-[9px] sm:text-[10px] font-black tracking-widest uppercase">{product.category}</span>
+                  <span className="text-slate-400 text-[10px] sm:text-xs font-bold">{product.volume}</span>
+                </div>
                 
-                <h3 className="text-2xl font-black text-slate-900 mb-3 group-hover:text-tucano-blue transition-colors">
+                <h3 className="text-2xl sm:text-3xl font-black text-slate-900 mb-3 sm:mb-4 leading-tight">
                   {product.name}
                 </h3>
                 
-                <p className="text-slate-500 text-sm leading-relaxed mb-6">
+                <p className="text-slate-500 text-sm sm:text-base leading-relaxed mb-6 sm:mb-8 font-medium">
                   {product.description}
                 </p>
 
-                {/* Attributes Tags */}
-                {product.attributes && (
-                  <div className="flex flex-wrap gap-2 mb-8">
-                    {product.attributes.map((attr, i) => (
-                      <span key={i} className="bg-blue-50 text-tucano-blue text-[10px] font-bold px-2 py-1 rounded-md">
-                        • {attr}
-                      </span>
-                    ))}
-                  </div>
-                )}
-
-                {/* Footer and CTA */}
-                <div className="mt-auto pt-6 border-t border-slate-50 flex items-center justify-between gap-4">
+                <div className="mt-auto pt-6 sm:pt-8 border-t border-slate-200">
                   <button 
                     onClick={() => handleBuyClick(product.name)}
-                    className="flex-grow flex items-center justify-center bg-[#25D366] text-white py-4 rounded-2xl font-black text-sm shadow-[0_8px_20px_rgba(37,211,102,0.2)] hover:bg-[#1ebe5d] hover:shadow-[0_8px_25px_rgba(37,211,102,0.3)] transition-all active:scale-95 overflow-hidden"
+                    className="w-full flex items-center justify-center gap-3 bg-[#25D366] text-white py-4 sm:py-5 rounded-xl sm:rounded-[1.5rem] font-black text-xs sm:text-sm hover:bg-[#1ebe5d] transition-all"
                   >
-                    <span>Comprar agora</span>
+                    <span>Quero este produto</span>
                   </button>
                 </div>
               </div>
@@ -130,16 +104,6 @@ const Products: React.FC = () => {
           ))}
         </div>
       </div>
-      
-      <style>{`
-        .scrollbar-hide::-webkit-scrollbar {
-          display: none;
-        }
-        .scrollbar-hide {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-      `}</style>
     </section>
   );
 };

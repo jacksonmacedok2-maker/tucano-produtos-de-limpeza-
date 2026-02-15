@@ -5,12 +5,35 @@ import { CONTACT_INFO, LOGO_URL, WA_ICON_URL, INSTA_ICON_URL } from '../constant
 
 const Footer: React.FC = () => {
   // Classe de hover para links de texto no rodapé
-  const footerLinkClass = "transition-colors duration-300 text-slate-400 hover:text-blue-400";
+  const footerLinkClass = "transition-colors duration-300 text-slate-400 hover:text-blue-400 cursor-pointer";
 
-  const handleLinkClick = (e: React.MouseEvent) => {
-    // Se for um link de exemplo, previne o comportamento padrão
-    if ((e.currentTarget as HTMLAnchorElement).getAttribute('href') === '#') {
+  // Função para lidar com cliques em links internos e evitar erros de navegação no ambiente de preview
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const href = e.currentTarget.getAttribute('href');
+    
+    // Se for um link interno (começa com #)
+    if (href && href.startsWith('#')) {
       e.preventDefault();
+      
+      // Se for apenas #, não faz nada
+      if (href === '#') return;
+
+      const id = href.substring(1);
+      const element = document.getElementById(id);
+      
+      if (element) {
+        // Compensação para o cabeçalho fixo
+        const offset = 100; 
+        const bodyRect = document.body.getBoundingClientRect().top;
+        const elementRect = element.getBoundingClientRect().top;
+        const elementPosition = elementRect - bodyRect;
+        const offsetPosition = elementPosition - offset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
     }
   };
 
@@ -50,7 +73,7 @@ const Footer: React.FC = () => {
                  </div>
                </a>
 
-               {/* WhatsApp Button - Escala aumentada para preenchimento total */}
+               {/* WhatsApp Button */}
                <a 
                 href={`https://wa.me/${CONTACT_INFO.whatsapp}?text=${encodeURIComponent(CONTACT_INFO.waMessage)}`}
                 target="_blank" 

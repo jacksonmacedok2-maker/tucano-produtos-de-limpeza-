@@ -12,7 +12,6 @@ const FinalCTA: React.FC = () => {
     <section className="py-24 bg-white">
       <div className="container mx-auto px-6">
         <div className="bg-gradient-to-br from-tucano-blue to-blue-700 rounded-[3rem] p-12 lg:p-24 text-center text-white relative overflow-hidden shadow-2xl">
-          {/* Background effects */}
           <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full -mr-48 -mt-48 blur-3xl"></div>
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-tucano-yellow/10 rounded-full -ml-48 -mb-48 blur-3xl"></div>
 
@@ -28,7 +27,7 @@ const FinalCTA: React.FC = () => {
               onClick={handleClick}
               className="flex items-center justify-center space-x-4 bg-[#25D366] hover:bg-[#1ebe5d] text-white px-10 py-5 rounded-2xl font-bold text-xl shadow-xl transition-all hover:scale-105 active:scale-95 mx-auto overflow-hidden"
             >
-              <img src={WA_ICON_URL} alt="" className="w-14 h-14 object-contain scale-[1.9] transition-transform" />
+              <img src={WA_ICON_URL} alt="" className="w-10 h-10 object-contain scale-[1.5] transition-transform" />
               <span>Fale conosco no WhatsApp</span>
             </button>
           </div>
