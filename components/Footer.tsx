@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Heart } from 'lucide-react';
 import { CONTACT_INFO, LOGO_URL, WA_ICON_URL, INSTA_ICON_URL } from '../constants';
@@ -43,11 +42,11 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* Brand & Socials */}
           <div className="space-y-8">
-             <div className="flex items-center space-x-3">
-                <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center overflow-hidden p-1.5 shadow-lg">
+             <div className="flex items-center space-x-4">
+                <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center overflow-hidden p-2 shadow-2xl">
                    <img src={LOGO_URL} alt="TUCANO Logo" className="w-full h-full object-contain" />
                 </div>
-                <span className="text-2xl font-black tracking-tighter text-white">TUCANO</span>
+                <span className="text-3xl font-black tracking-tighter text-white">TUCANO</span>
              </div>
              
              <p className="text-slate-400 leading-relaxed text-base font-medium">

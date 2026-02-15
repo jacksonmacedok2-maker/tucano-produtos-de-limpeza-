@@ -1,4 +1,7 @@
 
+// Adicionado import do React para resolver o erro de namespace na linha 24
+import React from 'react';
+
 export interface Product {
   id: number;
   name: string;

@@ -5,72 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TUCANO - Qualidade que cuida da sua casa</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                tucano: {
+                  blue: '#0056b3',
+                  yellow: '#FFD700',
+                }
+              },
+              fontFamily: {
+                sans: ['Inter', 'sans-serif'],
+                heading: ['Poppins', 'sans-serif'],
+              }
+            }
+          }
+        }
+    </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
             scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
         }
         h1, h2, h3, .font-heading {
             font-family: 'Poppins', sans-serif;
         }
-        .bg-tucano-blue { background-color: #0056b3; }
-        .text-tucano-blue { color: #0056b3; }
-        .bg-tucano-yellow { background-color: #FFD700; }
-        .text-tucano-yellow { color: #FFD700; }
-        .border-tucano-yellow { border-color: #FFD700; }
         
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0px); }
-        }
-        .animate-float {
-            animation: float 6s ease-in-out infinite;
-        }
-
-        /* Benefit Cards Hover Effect - Premium Theme */
-        .benefit-card {
-            transition: all 0.25s ease-in-out !important;
-            border-width: 1px;
-            border-style: solid;
-        }
-        .benefit-card:hover {
-            background-color: #0056b3 !important;
-            border-color: #0056b3 !important;
-            box-shadow: 0 12px 24px -6px rgba(0, 86, 179, 0.4) !important;
-        }
-        .benefit-card:hover h3 {
-            color: white !important;
-        }
-        .benefit-card:hover .benefit-icon-container {
-            background-color: rgba(255, 255, 255, 0.15) !important;
-            color: white !important;
-        }
-
-        /* Category Pills Hover Effect - Premium Theme */
-        .category-pill {
-            transition: all 0.2s ease-in-out !important;
-        }
-        .category-pill:hover {
-            background-color: #0056b3 !important;
-            color: white !important;
-            border-color: #0056b3 !important;
-            box-shadow: 0 8px 16px -4px rgba(0, 86, 179, 0.3) !important;
-        }
-
-        /* Header Nav Links - Pill Hover Effect */
+        /* Estilos base para links do menu */
         .header-nav-link {
-            transition: all 0.3s ease-in-out !important;
-            padding: 0.5rem 1.25rem;
-            border-radius: 9999px;
-            display: inline-block;
-        }
-        .header-nav-link:hover {
-            background-color: #0056b3 !important;
-            color: white !important;
-            box-shadow: 0 4px 12px rgba(0, 86, 179, 0.3) !important;
-            transform: translateY(-1px);
+            transition: all 0.3s ease-in-out;
         }
     </style>
 <script type="importmap">

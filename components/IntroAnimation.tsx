@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState, useRef } from 'react';
 import { LOGO_URL } from '../constants';
 
@@ -58,10 +57,10 @@ const IntroAnimation: React.FC = () => {
     
     // Alinhando com os novos tamanhos ampliados:
     // Base da animação é 128px (w-32)
-    // LG (144px): 144/128 = 1.125
-    // MD (128px): 128/128 = 1.0
-    // Mobile (96px): 96/128 = 0.75
-    const finalScale = window.innerWidth >= 1024 ? 1.125 : (window.innerWidth >= 768 ? 1.0 : 0.75);
+    // Logo no Header agora é h-44 (176px) no desktop sem scroll -> 176/128 = 1.375
+    // Logo no mobile é h-24 (96px) -> 96/128 = 0.75
+    const isDesktop = window.innerWidth >= 640;
+    const finalScale = isDesktop ? 1.375 : 0.75;
 
     toucan.style.transition = 'transform 2s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease';
     toucan.style.transform = `translate3d(${moveX}px, ${moveY}px, 0) scale(${finalScale + 0.15}) rotate(-10deg)`;

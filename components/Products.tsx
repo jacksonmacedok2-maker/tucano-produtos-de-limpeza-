@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { PRODUCTS, CONTACT_INFO } from '../constants';
 import { Package, Star, Sparkles as SparklesIcon } from 'lucide-react';
@@ -39,10 +38,10 @@ const Products: React.FC = () => {
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`category-pill px-6 py-2.5 sm:px-8 sm:py-3.5 rounded-xl sm:rounded-2xl font-black text-xs sm:text-sm border-2 ${
+                className={`category-pill px-6 py-2.5 sm:px-8 sm:py-3.5 rounded-xl sm:rounded-2xl font-black text-xs sm:text-sm border-2 transition-all duration-300 ${
                   activeCategory === cat 
                   ? 'bg-tucano-blue text-white border-tucano-blue shadow-lg scale-105' 
-                  : 'bg-white text-slate-500 border-slate-100 hover:border-blue-200'
+                  : 'bg-white text-slate-500 border-slate-100 hover:bg-tucano-blue hover:text-white hover:border-tucano-blue hover:scale-105 hover:shadow-md'
                 }`}
               >
                 {cat}
@@ -69,9 +68,7 @@ const Products: React.FC = () => {
                 
                 {product.isBestSeller && (
                   <div className="absolute top-4 right-4 sm:top-6 sm:right-6 overflow-hidden bg-gradient-to-br from-[#FFEA00] via-[#FFFF00] to-[#FFB800] text-tucano-blue px-3 py-1.5 sm:px-5 sm:py-2.5 rounded-xl sm:rounded-2xl text-[10px] sm:text-[11px] font-black flex items-center gap-2 shadow-[0_4px_12px_rgba(255,234,0,0.4)] z-20 border-2 border-white/60 animate-glow-pulse">
-                    {/* Efeito de brilho passando (Shine) */}
                     <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/70 to-transparent -translate-x-full animate-shine-badge pointer-events-none"></div>
-                    
                     <Star className="w-3.5 h-3.5 sm:w-4 sm:h-4 animate-spin-slow" fill="currentColor" />
                     <span className="relative z-10 tracking-[0.15em]">PREMIUM</span>
                   </div>
@@ -95,7 +92,7 @@ const Products: React.FC = () => {
                 <div className="mt-auto pt-6 sm:pt-8 border-t border-slate-200">
                   <button 
                     onClick={() => handleBuyClick(product.name)}
-                    className="w-full flex items-center justify-center gap-3 bg-[#25D366] text-white py-4 sm:py-5 rounded-xl sm:rounded-[1.5rem] font-black text-xs sm:text-sm hover:bg-[#1ebe5d] transition-all"
+                    className="w-full flex items-center justify-center gap-3 bg-[#25D366] text-white py-4 sm:py-5 rounded-xl sm:rounded-[1.5rem] font-black text-xs sm:text-sm hover:bg-[#1ebe5d] transition-all hover:scale-[1.02] active:scale-95 shadow-lg shadow-green-500/20"
                   >
                     <span>Quero este produto</span>
                   </button>
