@@ -12,7 +12,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
-          darkMode: 'class', // Força o Tailwind a usar classe, impedindo detecção automática de media query
+          darkMode: 'class',
           theme: {
             extend: {
               colors: {
@@ -31,14 +31,12 @@
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* Bloqueio de Modo Escuro Forçado por navegadores (Chrome Android/Samsung Internet) */
         :root {
             color-scheme: only light !important;
             --forced-bg: #f8fafc;
             --forced-text: #0f172a;
         }
 
-        /* Regra global para impedir inversão de cores em qualquer elemento */
         *, *::before, *::after {
             color-scheme: only light !important;
         }
@@ -53,7 +51,6 @@
             font-family: 'Inter', sans-serif;
             scroll-behavior: smooth;
             -webkit-font-smoothing: antialiased;
-            /* Tenta desativar ajustes automáticos de cor de alto contraste que podem agir como modo escuro */
             forced-color-adjust: none !important;
         }
         
@@ -61,7 +58,6 @@
             font-family: 'Poppins', sans-serif;
         }
         
-        /* Previne inversão de cores em imagens no modo escuro forçado */
         img {
             color-scheme: light !important;
         }
