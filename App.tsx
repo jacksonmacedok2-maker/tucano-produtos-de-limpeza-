@@ -26,7 +26,8 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative min-h-screen">
+    // Adicionada classe 'light' e estilos de fundo explícitos para reforçar o bloqueio do modo escuro
+    <div className="relative min-h-screen bg-slate-50 text-slate-900 light" style={{ colorScheme: 'light' }}>
       <SoapBubbles />
       <Header scrolled={scrolled} />
       <main>

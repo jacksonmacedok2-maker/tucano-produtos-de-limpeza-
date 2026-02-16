@@ -1,16 +1,18 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" style="color-scheme: only light !important;">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Força o navegador a entender que o site é apenas para modo claro -->
-    <meta name="color-scheme" content="light">
+    <!-- Meta tags reforçadas para bloquear modo escuro automático/forçado -->
+    <meta name="color-scheme" content="only light">
+    <meta name="supported-color-schemes" content="light">
     <meta name="theme-color" content="#f8fafc">
     
     <title>TUCANO - Qualidade que cuida da sua casa</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
+          darkMode: 'class', // Força o Tailwind a usar classe, impedindo detecção automática de media query
           theme: {
             extend: {
               colors: {
@@ -31,33 +33,37 @@
     <style>
         /* Bloqueio de Modo Escuro Forçado por navegadores (Chrome Android/Samsung Internet) */
         :root {
-            color-scheme: light;
+            color-scheme: only light !important;
+            --forced-bg: #f8fafc;
+            --forced-text: #0f172a;
+        }
+
+        /* Regra global para impedir inversão de cores em qualquer elemento */
+        *, *::before, *::after {
+            color-scheme: only light !important;
         }
 
         html, body {
-            color-scheme: light !important;
-            background-color: #f8fafc !important; /* bg-slate-50 */
-            color: #0f172a !important; /* text-slate-900 */
+            background-color: var(--forced-bg) !important;
+            color: var(--forced-text) !important;
+            color-scheme: only light !important;
         }
 
         body {
             font-family: 'Inter', sans-serif;
             scroll-behavior: smooth;
             -webkit-font-smoothing: antialiased;
+            /* Tenta desativar ajustes automáticos de cor de alto contraste que podem agir como modo escuro */
+            forced-color-adjust: none !important;
         }
         
         h1, h2, h3, .font-heading {
             font-family: 'Poppins', sans-serif;
         }
         
-        /* Estilos base para links do menu */
-        .header-nav-link {
-            transition: all 0.3s ease-in-out;
-        }
-
         /* Previne inversão de cores em imagens no modo escuro forçado */
         img {
-            color-scheme: light;
+            color-scheme: light !important;
         }
     </style>
 <script type="importmap">
