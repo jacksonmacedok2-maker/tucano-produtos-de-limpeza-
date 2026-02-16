@@ -1,5 +1,6 @@
 import React from 'react';
 import { ShoppingBag } from 'lucide-react';
+import SparkleParticles from './SparkleParticles';
 
 const Hero: React.FC = () => {
   const handleScrollToProducts = () => {
@@ -19,6 +20,9 @@ const Hero: React.FC = () => {
           alt="Interior de luxo limpo" 
           className="hero-bg-image w-full h-full object-cover opacity-90 scale-100 animate-subtle-zoom"
         />
+        {/* Efeito de partículas de brilho */}
+        <SparkleParticles />
+        
         {/* Gradiente suavizado para menos escuridão e maior clareza da imagem */}
         <div className="absolute inset-0 bg-gradient-to-r from-slate-950/50 via-slate-900/10 to-slate-900/20"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent"></div>

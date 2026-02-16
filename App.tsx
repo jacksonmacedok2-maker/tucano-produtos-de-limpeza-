@@ -12,6 +12,7 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import WhatsAppFloatingButton from './components/WhatsAppFloatingButton';
 import SoapBubbles from './components/SoapBubbles';
+import FadeInSection from './components/FadeInSection';
 
 const App: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -29,15 +30,41 @@ const App: React.FC = () => {
       <SoapBubbles />
       <Header scrolled={scrolled} />
       <main>
-        <Hero />
-        <Benefits />
-        <Products />
-        <Differentials />
-        <About />
-        <Distribution />
-        <Testimonials />
-        <FAQ />
-        <Contact />
+        <FadeInSection>
+          <Hero />
+        </FadeInSection>
+        
+        <FadeInSection>
+          <Benefits />
+        </FadeInSection>
+        
+        <FadeInSection>
+          <Products />
+        </FadeInSection>
+        
+        <FadeInSection>
+          <Differentials />
+        </FadeInSection>
+        
+        <FadeInSection>
+          <About />
+        </FadeInSection>
+        
+        <FadeInSection>
+          <Distribution />
+        </FadeInSection>
+        
+        <FadeInSection>
+          <Testimonials />
+        </FadeInSection>
+        
+        <FadeInSection>
+          <FAQ />
+        </FadeInSection>
+        
+        <FadeInSection>
+          <Contact />
+        </FadeInSection>
       </main>
       <Footer />
       <WhatsAppFloatingButton />

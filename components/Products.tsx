@@ -17,10 +17,16 @@ const Products: React.FC = () => {
   };
 
   return (
-    <section id="produtos" className="py-16 sm:py-32 bg-white relative overflow-hidden">
+    <section id="produtos" className="py-16 sm:py-32 bg-gradient-to-b from-slate-50 via-white to-slate-50 relative overflow-hidden">
+      {/* Elementos Decorativos de Fundo (Glow Blobs) */}
+      <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden z-0">
+        <div className="absolute top-1/4 -left-20 w-[40rem] h-[40rem] bg-tucano-blue/5 rounded-full blur-[120px] animate-pulse-slow"></div>
+        <div className="absolute bottom-1/4 -right-20 w-[35rem] h-[35rem] bg-tucano-yellow/5 rounded-full blur-[100px] animate-pulse-slow" style={{ animationDelay: '2s' }}></div>
+      </div>
+
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-10 sm:mb-20">
-          <div className="inline-flex items-center gap-2 text-tucano-blue font-black uppercase tracking-[0.3em] text-[10px] sm:text-xs mb-4 sm:mb-6 px-4 py-2 bg-blue-50 rounded-full">
+          <div className="inline-flex items-center gap-2 text-tucano-blue font-black uppercase tracking-[0.3em] text-[10px] sm:text-xs mb-4 sm:mb-6 px-4 py-2 bg-blue-100/50 rounded-full backdrop-blur-sm border border-blue-100/50">
             <SparklesIcon size={14} />
             Qualidade Tucano
           </div>
@@ -41,7 +47,7 @@ const Products: React.FC = () => {
                 className={`category-pill px-6 py-2.5 sm:px-8 sm:py-3.5 rounded-xl sm:rounded-2xl font-black text-xs sm:text-sm border-2 transition-all duration-300 ${
                   activeCategory === cat 
                   ? 'bg-tucano-blue text-white border-tucano-blue shadow-lg scale-105' 
-                  : 'bg-white text-slate-500 border-slate-100 hover:bg-tucano-blue hover:text-white hover:border-tucano-blue hover:scale-105 hover:shadow-md'
+                  : 'bg-white/80 backdrop-blur-sm text-slate-500 border-slate-100 hover:bg-tucano-blue hover:text-white hover:border-tucano-blue hover:scale-105 hover:shadow-md'
                 }`}
               >
                 {cat}
@@ -54,7 +60,7 @@ const Products: React.FC = () => {
           {filteredProducts.map((product) => (
             <div 
               key={product.id} 
-              className="group flex flex-col bg-slate-50 rounded-[2rem] sm:rounded-[3rem] overflow-hidden hover:shadow-2xl transition-all duration-500 h-full border border-transparent hover:border-slate-100"
+              className="group flex flex-col bg-white/70 backdrop-blur-sm rounded-[2rem] sm:rounded-[3rem] overflow-hidden hover:shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] transition-all duration-500 h-full border border-slate-100 hover:border-tucano-blue/20"
             >
               <div className="relative h-64 sm:h-80 bg-white overflow-hidden flex items-center justify-center p-8 sm:p-10">
                 {product.image ? (
@@ -89,7 +95,7 @@ const Products: React.FC = () => {
                   {product.description}
                 </p>
 
-                <div className="mt-auto pt-6 sm:pt-8 border-t border-slate-200">
+                <div className="mt-auto pt-6 sm:pt-8 border-t border-slate-100">
                   <button 
                     onClick={() => handleBuyClick(product.name)}
                     className="w-full flex items-center justify-center gap-3 bg-[#25D366] text-white py-4 sm:py-5 rounded-xl sm:rounded-[1.5rem] font-black text-xs sm:text-sm hover:bg-[#1ebe5d] transition-all hover:scale-[1.02] active:scale-95 shadow-lg shadow-green-500/20"
@@ -117,6 +123,10 @@ const Products: React.FC = () => {
           from { transform: rotate(0deg); }
           to { transform: rotate(360deg); }
         }
+        @keyframes pulse-slow {
+          0%, 100% { opacity: 0.5; transform: scale(1); }
+          50% { opacity: 0.8; transform: scale(1.05); }
+        }
         .animate-shine-badge {
           animation: shine-badge 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
         }
@@ -125,6 +135,9 @@ const Products: React.FC = () => {
         }
         .animate-spin-slow {
           animation: spin-slow 6s linear infinite;
+        }
+        .animate-pulse-slow {
+          animation: pulse-slow 8s ease-in-out infinite;
         }
       `}</style>
     </section>
