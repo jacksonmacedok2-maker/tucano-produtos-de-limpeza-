@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Força o navegador a entender que o site é apenas para modo claro -->
+    <meta name="color-scheme" content="light">
+    <meta name="theme-color" content="#f8fafc">
+    
     <title>TUCANO - Qualidade que cuida da sua casa</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -25,11 +29,23 @@
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
+        /* Bloqueio de Modo Escuro Forçado por navegadores (Chrome Android/Samsung Internet) */
+        :root {
+            color-scheme: light;
+        }
+
+        html, body {
+            color-scheme: light !important;
+            background-color: #f8fafc !important; /* bg-slate-50 */
+            color: #0f172a !important; /* text-slate-900 */
+        }
+
         body {
             font-family: 'Inter', sans-serif;
             scroll-behavior: smooth;
             -webkit-font-smoothing: antialiased;
         }
+        
         h1, h2, h3, .font-heading {
             font-family: 'Poppins', sans-serif;
         }
@@ -37,6 +53,11 @@
         /* Estilos base para links do menu */
         .header-nav-link {
             transition: all 0.3s ease-in-out;
+        }
+
+        /* Previne inversão de cores em imagens no modo escuro forçado */
+        img {
+            color-scheme: light;
         }
     </style>
 <script type="importmap">
