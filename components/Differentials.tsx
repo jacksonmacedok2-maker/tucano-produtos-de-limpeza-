@@ -8,8 +8,8 @@ const Differentials: React.FC = () => {
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-24">
           <div className="lg:w-1/2">
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 mb-8 sm:mb-12 leading-tight tracking-tight">
-              Por que a Tucano é a <br />
-              <span className="text-tucano-blue underline decoration-tucano-yellow/40 decoration-8 underline-offset-4">favorita das famílias?</span>
+              Tecnologia e <br />
+              <span className="text-tucano-blue underline decoration-tucano-yellow/40 decoration-8 underline-offset-4">Máxima Eficiência</span>
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
               {DIFFERENTIALS.map((diff, idx) => (

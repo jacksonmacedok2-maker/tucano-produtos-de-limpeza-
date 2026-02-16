@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { CONTACT_INFO, LOGO_URL } from '../constants';
@@ -14,8 +15,8 @@ const navItems = [
   { label: 'Contato', id: 'contato' },
 ];
 
-const Header: React.FC = HeaderProps => {
-  const { scrolled } = HeaderProps;
+// Correctly type the functional component with HeaderProps and destructure props directly in the arguments
+const Header: React.FC<HeaderProps> = ({ scrolled }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
